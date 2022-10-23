@@ -3,21 +3,18 @@
 #include <fstream>
 using namespace std;
 
+//starting positions
 int col = 0;
 int row = 0;
 
 void RecursionFunc::execute(int** mapMatrix,int** keyMatrix,int keySize,int mapRow,int mapCol) {
-    ofstream outputFile("C:\\Users\\GameGaraj\\CLionProjects\\FirstAssignment\\output.txt",ofstream::out);
+    fstream outputFile("C:\\Users\\GameGaraj\\CLionProjects\\FirstAssignment\\output.txt",ios::app | ios::in | ios::out);
 
+    int sum = 0;
     int keyMatrixRow = 0;
     int keyMatrixCol = 0;
-    int sum = 0;
-    cout << row << " " << col <<"\n";
-
-    for(int i = row; i < (row + keySize);i++){
-
+    for(int i = row; i < (row + keySize);i++){ // this loop calculates the sum of matrices
         for(int j = col; j < (col + keySize) ; j++){
-            //cout << keyMatrix[keyMatrixRow][keyMatrixCol] << " "<<mapMatrix[i][j]<< "\n";
             sum += mapMatrix[i][j] * keyMatrix[keyMatrixRow][keyMatrixCol];
             keyMatrixCol++;
         }
@@ -25,75 +22,51 @@ void RecursionFunc::execute(int** mapMatrix,int** keyMatrix,int keySize,int mapR
         keyMatrixRow++;
     }
 
+    // creating output string and appending to output.txt
+    // ---------
     string output = "";
     output += to_string(row + ((keySize -1) / 2));
     output += ",";
     output += to_string(col + ((keySize -1) / 2));
     output += ":";
     output += to_string(sum);
-    cout << output << "\n";
     outputFile << output << "\n";
-    outputFile << sum << " ";
+    outputFile.seekg(0);
+    // ---------
 
-
-    if(sum % 5 == 0){
-        cout << "finished" <<"\n";
+    if(sum % 5 == 0){ // recursion ends
 
     }else{
+        // start Recursion
         if (sum % 5 == 1 || sum % 5 == -4){
-            if(row == 0){
+            if(row == 0){ // if it is top
                 row = keySize;
             }else{
                 row -= keySize;
             }
         }
         else if (sum % 5 == 2 || sum % 5 == -3){
-            if(row == (mapRow - keySize)){
+            if(row == (mapRow - keySize)){ // if it is bottom
                 row -= keySize;
             }else{
                 row += keySize;
             }
         }
         else if (sum % 5 == 3 || sum % 5 == -2){
-            if(col == (mapCol - keySize)){
+            if(col == (mapCol - keySize)){ // if it is right
                 col -= keySize;
             }else{
                 col += keySize;
             }
         }
         else if (sum % 5 == 4 || sum % 5 == -1){
-            if(col == 0){
+            if(col == 0){ // if it is left
                 col = keySize;
             }else{
                 col -= keySize;
             }
         }
-
-        execute(mapMatrix,keyMatrix,keySize,mapRow,mapCol);
-
-
+        execute(mapMatrix,keyMatrix,keySize,mapRow,mapCol); // recursion
     }
-
-
-
-
-    /*
-    for(int i = 0 ; i < 18;i++){
-
-        for(int y = 0; y < 18; y++){
-            cout << mapMatrix[i][y];
-        }
-        cout << "\n";
-
-    }
-
-    for(int i = 0 ; i < keySize;i++){
-
-        for(int y = 0; y < keySize; y++){
-            cout << keyMatrix[i][y];
-        }
-        cout << "\n";
-
-    }*/
 }
 
