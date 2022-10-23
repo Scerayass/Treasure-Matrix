@@ -7,7 +7,7 @@ int col = 0;
 int row = 0;
 
 void RecursionFunc::execute(int** mapMatrix,int** keyMatrix,int keySize,int mapRow,int mapCol) {
-    //ofstream outputFile("C:\\Users\\GameGaraj\\CLionProjects\\FirstAssignment\\output.txt",ios::app);
+    ofstream outputFile("C:\\Users\\GameGaraj\\CLionProjects\\FirstAssignment\\output.txt",ofstream::out);
 
     int keyMatrixRow = 0;
     int keyMatrixCol = 0;
@@ -32,7 +32,8 @@ void RecursionFunc::execute(int** mapMatrix,int** keyMatrix,int keySize,int mapR
     output += ":";
     output += to_string(sum);
     cout << output << "\n";
-    //outputFile << output << "\n";
+    outputFile << output << "\n";
+    outputFile << sum << " ";
 
 
     if(sum % 5 == 0){
@@ -67,7 +68,10 @@ void RecursionFunc::execute(int** mapMatrix,int** keyMatrix,int keySize,int mapR
                 col -= keySize;
             }
         }
+
         execute(mapMatrix,keyMatrix,keySize,mapRow,mapCol);
+
+
     }
 
 
