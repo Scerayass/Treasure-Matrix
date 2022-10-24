@@ -2,7 +2,8 @@
 #include "ReadFile.h"
 #include "RecursionFunc.h"
 using namespace std;
-int main() {
+int main(int argc,char *argv[]) {
+    cout << argv[1] << " " << argv[2] << " " << argv[3] << " " << argv[4] << " " << argv[5];
     int mapRow = 18;
     int mapCol = 18;
     int keySize = 3;
