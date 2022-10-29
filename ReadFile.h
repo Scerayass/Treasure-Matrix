@@ -8,7 +8,7 @@
 
 class ReadFile {
 public:
-    void readTxt(int** mapMatrix,int** keyMatrix ,int row,int column,int keySize);
+   void readTxt(int** mapMatrix,int** keyMatrix ,std::string mapMatrixFileName,std::string keyMatrixFileName,int column,int keySize);
 };
 
 

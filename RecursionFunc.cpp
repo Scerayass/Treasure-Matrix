@@ -7,36 +7,38 @@ using namespace std;
 int col = 0;
 int row = 0;
 
-void RecursionFunc::execute(int** mapMatrix,int** keyMatrix,int keySize,int mapRow,int mapCol) {
-    fstream outputFile("C:\\Users\\GameGaraj\\CLionProjects\\FirstAssignment\\output.txt",ios::app | ios::in | ios::out);
+void RecursionFunc::execute(int** mapMatrix,int** keyMatrix,string outputFileName,int keySize,int mapRow,int mapCol) {
+    fstream outputFile(outputFileName,ios::app | ios::in | ios::out);
 
     int sum = 0;
     int keyMatrixRow = 0;
     int keyMatrixCol = 0;
-    cout << col << " " << row ;
+    //cout << col << " " << row ;
     for(int i = row; i < (row + keySize);i++){ // this loop calculates the sum of matrices
         for(int j = col; j < (col + keySize) ; j++){
             sum += mapMatrix[i][j] * keyMatrix[keyMatrixRow][keyMatrixCol];
+
             keyMatrixCol++;
         }
         keyMatrixCol = 0;
         keyMatrixRow++;
     }
-
+    //cout << sum << " ";
     // creating output string and appending to output.txt
     // ---------
     string output = "";
-    output += (row + ((keySize -1) / 2));
+    output += to_string(row + ((keySize -1) / 2));
     output += ",";
-    output += (col + ((keySize -1) / 2));
+    output += to_string(col + ((keySize -1) / 2));
     output += ":";
-    output += sum;
+    output += to_string(sum);
+    //cout << output << "\n";
     outputFile << output << "\n";
     outputFile.seekg(0);
     // ---------
 
-    if(sum % 5 == 0){ // recursion ends
-
+    if(sum % 5 == 0){
+        // recursion ends
     }else{
         // start Recursion
         if (sum % 5 == 1 || sum % 5 == -4){
@@ -67,7 +69,7 @@ void RecursionFunc::execute(int** mapMatrix,int** keyMatrix,int keySize,int mapR
                 col -= keySize;
             }
         }
-        execute(mapMatrix,keyMatrix,keySize,mapRow,mapCol); // recursion
+        execute(mapMatrix,keyMatrix,outputFileName,keySize,mapRow,mapCol); // recursion
     }
 }
 

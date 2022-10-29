@@ -1,17 +1,16 @@
 #include <iostream>
 #include <fstream>
 #include "ReadFile.h"
-#include <cstring>
 #include <algorithm>
 #include <string>
 #include "sstream"
 using namespace std;
 
-void ReadFile::readTxt(int** mapMatrix,int** keyMatrix,int row,int column ,int keySize) {
+void ReadFile::readTxt(int** mapMatrix,int** keyMatrix,string mapMatrixFileName,string keyMatrixFileName,int column ,int keySize) {
 
     //--------------------------------------------------- Map Matrix Side
     ifstream mapMatrixFile;
-    mapMatrixFile.open("C:\\Users\\GameGaraj\\CLionProjects\\FirstAssignment\\mapmatrix.txt",ios::in);
+    mapMatrixFile.open(mapMatrixFileName,ios::in);
 
     string mapMatrixString;
     int mapIndex = 0;
@@ -35,7 +34,7 @@ void ReadFile::readTxt(int** mapMatrix,int** keyMatrix,int row,int column ,int k
     //--------------------------------------------------- Key Matrix Side
 
     ifstream keymatrixFile;
-    keymatrixFile.open("C:\\Users\\GameGaraj\\CLionProjects\\FirstAssignment\\keymatrix.txt");
+    keymatrixFile.open(keyMatrixFileName);
 
     string keyMatrixString;
     int keyIndex = 0;
