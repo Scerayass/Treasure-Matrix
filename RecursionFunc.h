@@ -5,6 +5,18 @@
 
 class RecursionFunc {
 public:
+    /**
+     *
+     * \n Starting to Recursion function
+     *
+     *
+     * @param mapMatrix
+     * @param keyMatrix
+     * @param outputFileName
+     * @param keySize
+     * @param mapRow
+     * @param mapCol
+     */
     void execute(int** mapMatrix,int** keyMatrix,std::string outputFileName,int keySize,int mapRow,int mapCol);
 };
 

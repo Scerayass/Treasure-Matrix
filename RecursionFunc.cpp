@@ -13,7 +13,7 @@ void RecursionFunc::execute(int** mapMatrix,int** keyMatrix,string outputFileNam
     int sum = 0;
     int keyMatrixRow = 0;
     int keyMatrixCol = 0;
-    //cout << col << " " << row ;
+
     for(int i = row; i < (row + keySize);i++){ // this loop calculates the sum of matrices
         for(int j = col; j < (col + keySize) ; j++){
             sum += mapMatrix[i][j] * keyMatrix[keyMatrixRow][keyMatrixCol];
@@ -23,7 +23,7 @@ void RecursionFunc::execute(int** mapMatrix,int** keyMatrix,string outputFileNam
         keyMatrixCol = 0;
         keyMatrixRow++;
     }
-    //cout << sum << " ";
+
     // creating output string and appending to output.txt
     // ---------
     string output = "";
@@ -31,8 +31,8 @@ void RecursionFunc::execute(int** mapMatrix,int** keyMatrix,string outputFileNam
     output += ",";
     output += to_string(col + ((keySize -1) / 2));
     output += ":";
+    if(sum < 0 ){ sum = (sum % 5) + 5;} // for negative sum values
     output += to_string(sum);
-    //cout << output << "\n";
     outputFile << output << "\n";
     outputFile.seekg(0);
     // ---------

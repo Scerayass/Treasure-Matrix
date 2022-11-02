@@ -13,7 +13,7 @@ void ReadFile::readTxt(int** mapMatrix,int** keyMatrix,string mapMatrixFileName,
     mapMatrixFile.open(mapMatrixFileName,ios::in);
 
     string mapMatrixString;
-    int mapIndex = 0;
+    int mapIndex = 0; // outside While index
     int mapWhileIndex = 0; // inner While index
 
     while(getline(mapMatrixFile,mapMatrixString)){
@@ -23,7 +23,7 @@ void ReadFile::readTxt(int** mapMatrix,int** keyMatrix,string mapMatrixFileName,
         string whileString;
 
         while(getline(mapStringStream,whileString,' ')){
-            mapMatrix[mapIndex][mapWhileIndex] = stoi(whileString);
+            mapMatrix[mapIndex][mapWhileIndex] = stoi(whileString); // adding integer to matrix
             mapWhileIndex++;
         }
         mapWhileIndex = 0;
@@ -37,8 +37,8 @@ void ReadFile::readTxt(int** mapMatrix,int** keyMatrix,string mapMatrixFileName,
     keymatrixFile.open(keyMatrixFileName);
 
     string keyMatrixString;
-    int keyIndex = 0;
-    int keyWhileIndex = 0;// inner While index
+    int keyIndex = 0; // outside While index
+    int keyWhileIndex = 0; // inner While index
 
     while(getline(keymatrixFile,keyMatrixString)){
         keyMatrix[keyIndex] =  new int[keySize];// adding rows to keyMatrix matrix
@@ -47,7 +47,7 @@ void ReadFile::readTxt(int** mapMatrix,int** keyMatrix,string mapMatrixFileName,
         string whileString;
 
         while (getline(keyStringStream,whileString,' ')){
-            keyMatrix[keyIndex][keyWhileIndex]= stoi(whileString);
+            keyMatrix[keyIndex][keyWhileIndex]= stoi(whileString);// adding integer to matrix
             keyWhileIndex++;
         }
         keyIndex++;
